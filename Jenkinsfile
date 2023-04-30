@@ -22,7 +22,9 @@ pipeline{
         stage('deploy')
         {
             steps{
-                sh "sleep 10"
+                    sshagent(credentials:['Login_App']){
+                    sh 'ssh  -o StrictHostKeyChecking=no  ubuntu@10.0.1.198 uptime "whoami"'
+                   }
             }
         }
     }
