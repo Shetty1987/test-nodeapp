@@ -25,7 +25,9 @@ pipeline{
                     sshagent(credentials:['Login_App']){
                      sh """ 
                         ssh -o StrictHostKeyChecking=no ubuntu@10.0.1.198
-                        pwd && hostname
+                        aws ecr get-login-password --region us-east-1 |docker login --username AWS --password-stdin 724012784310.dkr.ecr.us-east-1.amazonaws.com
+                        docker pull 724012784310.dkr.ecr.us-east-1.amazonaws.com/node-app:v${BUILD_NUMBER}
+                        docker run -d -p 8081:8081 --name nodeapp node-app:v${BUILD_NUMBER}                        
                       """
                    }
             }
