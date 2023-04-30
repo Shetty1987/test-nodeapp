@@ -12,10 +12,10 @@ pipeline{
         {
             steps{
                 sh """
-                "cat Dockerfile"
-                "docker build -t 724012784310.dkr.ecr.us-east-1.amazonaws.com/node-app:v${BUILD_NUMBER} ."
-                "aws ecr get-login-password --region us-east-1 |docker login --username AWS --password-stdin 724012784310.dkr.ecr.us-east-1.amazonaws.com"
-                "docker push 724012784310.dkr.ecr.us-east-1.amazonaws.com/node-app:v${BUILD_NUMBER}"
+                cat Dockerfile
+                docker build -t 724012784310.dkr.ecr.us-east-1.amazonaws.com/node-app:v${BUILD_NUMBER} .
+                aws ecr get-login-password --region us-east-1 |docker login --username AWS --password-stdin 724012784310.dkr.ecr.us-east-1.amazonaws.com
+                docker push 724012784310.dkr.ecr.us-east-1.amazonaws.com/node-app:v${BUILD_NUMBER}
                  """
             }
         }
