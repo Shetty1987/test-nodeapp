@@ -25,7 +25,7 @@ pipeline{
                     sshagent(credentials:['Login_App']){
                      sh """ 
                         ssh -o StrictHostKeyChecking=no ubuntu@10.0.1.198
-                        echo pwd
+                        pwd && hostname
                       """
                    }
             }
